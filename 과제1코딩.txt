@@ -1,0 +1,74 @@
+function setup() {
+  createCanvas(600, 400);
+  colorMode(RGB);
+}
+
+function draw() {
+  background(200, 225, 255);
+
+  // 👇 움직임이 있던 변수들을 고정값으로 변경
+  let wobble = 0;         // sin(t) 제거 → 흔들림 없음
+  let grow = 1;           // 크기 변화 없음
+  let shiftX = 0;         // 좌우 이동 없음
+  let shiftY = 0;         // 상하 이동 없음
+
+  // 색상도 고정
+  let animatedColor = color(255, 120, 120);
+
+  stroke(0);
+  strokeWeight(2);
+
+  // --- 왼쪽 원형 파츠 ---
+  fill(130, 0, 130, 220);
+  ellipse(135 + shiftX, 165 + shiftY, 50 * grow, 50 * grow);
+
+  // --- 왼쪽 사각형 파츠 ---
+  fill(animatedColor);
+  rect(70 + shiftX, 110 + shiftY, 90, 70);
+
+  // --- 왼쪽 기하학 도형 ---
+  fill(70, 140, 255);
+  beginShape();
+  vertex(145 + wobble, 60);
+  vertex(185 + wobble, 110);
+  vertex(160 + wobble, 185);
+  vertex(120 + wobble, 140);
+  endShape(CLOSE);
+
+  // --- 오른쪽 원형 파츠 ---
+  fill(130, 0, 130, 220);
+  ellipse(330 + shiftX, 155 + shiftY, 50 * grow, 50 * grow);
+
+  // --- 오른쪽 사각형 파츠 ---
+  fill(animatedColor);
+  rect(300 + shiftX, 110 + shiftY, 70, 70);
+
+  // --- 대각선 선 ---
+  stroke(0);
+  line(50, 330, 380, 60);
+
+  // --- 아래쪽 반원 ---
+  noStroke();
+  fill(0, 255, 0);
+  arc(140, 300, 120, 120, 0, PI, CHORD);
+
+  // --- 아래 양쪽 선 ---
+  stroke(0);
+  strokeWeight(2);
+  line(80, 300, 140, 360);
+  line(200, 300, 140, 360);
+
+  // --- 오른쪽 큰 원 ---
+  noStroke();
+  fill(0, 255, 0);
+  ellipse(380, 300, 110, 110);
+
+  // --- 반달 모양 ---
+  fill(200, 225, 255);
+  arc(380, 280, 90, 90, PI + 0.2, TWO_PI - 0.3, PIE);
+
+  // --- 노란빛 원 ---
+  fill(240, 240, 120, 120);
+  stroke(0);
+  ellipse(360, 220, 130, 130);
+}
